@@ -20,6 +20,9 @@ driver = nonebot.get_driver()
 driver.register_adapter("cqhttp", CQHTTPBot)
 nonebot.load_builtin_plugins()
 nonebot.load_plugin("nonebot_plugin_hanayori") # B站开播提醒插件
+nonebot.load_plugin("nonebot_plugin_epicfree") # epic限免提醒插件
+nonebot.load_plugin("nonebot_plugin_simplemusic") # 点歌插件
+nonebot.load_plugin("nonebot_plugin_analysis_bilibili")
 nonebot.load_plugins("src/plugins")
 
 nonebot.load_from_toml("pyproject.toml")

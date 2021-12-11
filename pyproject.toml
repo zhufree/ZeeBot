@@ -14,7 +14,7 @@ nb-cli = "^0.1.0"
 nonebot-test = "^0.1.0"
 
 [nonebot.plugins]
-plugins = ["nonebot_plugin_hanayori"]
+plugins = ["nonebot_plugin_hanayori", "nonebot_plugin_epicfree", "nonebot_plugin_analysis_bilibili", "nonebot_plugin_simplemusic"]
 plugin_dirs = ["src/plugins"]
 
 [build-system]
