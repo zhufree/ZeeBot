@@ -14,8 +14,8 @@ def get_audio_path(audio_dir):
     audio_files = os.listdir(f'audios/{audio_dir}')
     random_audio = random.choice(audio_files)
     base_path = os.path.split(os.path.abspath(random_audio))[0]
-    return 'file:///' + base_path + f'\\audios\\{audio_dir}\\' + random_audio
-    #return 'file://' + base_path + f'/audios/{audio_dir}/' + random_audio
+    # return 'file:///' + base_path + f'\\audios\\{audio_dir}\\' + random_audio
+    return 'file://' + base_path + f'/audios/{audio_dir}/' + random_audio
 
 @judy_matcher.handle()
 async def handle_audio(bot: Bot, event: Event):
