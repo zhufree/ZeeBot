@@ -13,7 +13,7 @@ nonebot-test = "^0.1.0"
 
 
 [tool.nonebot]
-plugins = ["nonebot_plugin_simplemusic", "nonebot_plugin_epicfree", "nonebot_bison"]
+plugins = ["nonebot_plugin_simplemusic", "nonebot_plugin_epicfree", "nonebot_bison", "nonebot_plugin_easyCommand"]
 plugin_dirs = ["src/plugins"]
 
 [build-system]
