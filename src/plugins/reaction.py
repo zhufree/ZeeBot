@@ -9,6 +9,7 @@ import os, random
 judy_matcher = on_regex(r"\s*((?:Judy|朱迪|朱)(?:叫|按钮))|(?:mea +button)\s*")
 qywy_matcher = on_regex(r'温温温|绝绝绝')
 txl_matcher = on_regex(r'探虚陵|txl|探')
+zoya_matcher = on_regex(r'zoya|卓娅')
 
 def get_audio_path(audio_dir):
     audio_files = os.listdir(f'audios/{audio_dir}')
@@ -41,6 +42,14 @@ async def handle_audio(bot: Bot, event: Event):
     ))
     await txl_matcher.finish(audio_msg)
 
+@zoya_matcher.handle()
+async def handle_audio(bot: Bot, event: Event):
+    path = get_audio_path('zoya')
+    audio_msg = Message(MessageSegment(type='record', data={
+        'file':path}
+    ))
+    await zoya_matcher.finish(audio_msg)
+    
 keywords_dict = {
     '嘤': '嘤嘤嘤'
 }
