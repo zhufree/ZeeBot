@@ -10,6 +10,9 @@ judy_matcher = on_regex(r"\s*((?:Judy|朱迪|朱)(?:叫|按钮))|(?:mea +button)
 qywy_matcher = on_regex(r'温温温|绝绝绝')
 txl_matcher = on_regex(r'探虚陵|txl|探')
 zoya_matcher = on_regex(r'zoya|卓娅')
+baiyi_matcher = on_regex(r'白逸|白1')
+qierxi_matcher = on_regex(r'切尔西|72c|富婆')
+aien_matcher = on_keyword('艾恩')
 
 def get_audio_path(audio_dir):
     audio_files = os.listdir(f'audios/{audio_dir}')
@@ -49,7 +52,31 @@ async def handle_audio(bot: Bot, event: Event):
         'file':path}
     ))
     await zoya_matcher.finish(audio_msg)
-    
+
+@baiyi_matcher.handle()
+async def handle_audio(bot: Bot, event: Event):
+    path = get_audio_path('baiyi')
+    audio_msg = Message(MessageSegment(type='record', data={
+        'file':path}
+    ))
+    await baiyi_matcher.finish(audio_msg)
+
+@qierxi_matcher.handle()
+async def handle_audio(bot: Bot, event: Event):
+    path = get_audio_path('qierxi')
+    audio_msg = Message(MessageSegment(type='record', data={
+        'file':path}
+    ))
+    await qierxi_matcher.finish(audio_msg)
+
+@aien_matcher.handle()
+async def handle_audio(bot: Bot, event: Event):
+    path = get_audio_path('aien')
+    audio_msg = Message(MessageSegment(type='record', data={
+        'file':path}
+    ))
+    await aien_matcher.finish(audio_msg)
+
 keywords_dict = {
     '嘤': '嘤嘤嘤'
 }
