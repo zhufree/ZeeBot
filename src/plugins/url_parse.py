@@ -9,8 +9,7 @@ from linkson import parse_url
 from config import *
 import json
 
-url_matcher = on_keyword(r'http|QQ小程序|豆瓣', priority=1)
-# url_matcher = on_regex(r"\s*((?:Judy|朱迪|朱)(?:叫|按钮))|(?:mea +button)\s*")
+url_matcher = on_keyword(r'http|小程序|豆瓣', priority=1)
 @url_matcher.handle()
 async def handle_audio(bot: Bot, event: Event):
     msg = event.get_message()
