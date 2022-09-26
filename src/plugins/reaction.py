@@ -7,7 +7,6 @@ from nonebot import on_message
 import os, random
 
 
-
 jailer_keywords = {
     'zoya': ['zoya', '卓娅'],
     'baiyi': ['白逸', '白1'],
@@ -19,10 +18,10 @@ jailer_keywords = {
     'lanli': ['兰利'],
     'heluo': ['赫罗'],
     'yilinna': ['伊琳娜'],
-    'hameier': ['哈梅尔'],
-    'amypan': ['艾米潘'],
+    'hameier': ['哈梅尔', '水母'],
+    'amypan': ['艾米潘', 'emp'],
     'fuluola': ['芙洛拉'],
-    'zhanxingzhe': ['占星者'],
+    'guanxingzhe': ['占星者', '观星者'],
     'leibinisi': ['雷比尼斯'],
     'demoli': ['德莫莉'],
     'weiduoliya': ['维多利亚'],
@@ -78,8 +77,8 @@ def get_audio_path(audio_dir):
     return 'file://' + base_path + f'/audios/{audio_dir}/' + random_audio
 
 judy_matcher = on_regex(r"\s*((?:Judy|朱迪|朱)(?:叫|按钮))|(?:mea +button)\s*")
-qywy_matcher = on_regex(r'温温温|绝绝绝')
-txl_matcher = on_regex(r'探虚陵|txl|探')
+qywy_matcher = on_regex(r'温温温|绝绝绝|qywy|茜言万雨')
+txl_matcher = on_regex(r'探虚陵')
 
 @judy_matcher.handle()
 async def handle_audio(bot: Bot, event: Event):
