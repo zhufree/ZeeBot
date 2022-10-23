@@ -2,8 +2,6 @@ from curses.ascii import isdigit
 from nonebot import on_command
 from nonebot.params import Arg, CommandArg, ArgPlainText
 from nonebot.matcher import Matcher
-from nonebot.typing import T_State
-from nonebot.adapters import Bot, Event
 from nonebot.adapters.onebot.v11 import Message, MessageSegment
 import json
 
