@@ -64,5 +64,5 @@ async def send_weibo(weibo_list):
                                 )
                     msg_segments += pic_segment
         msg_segments += f"at {weibo['time']}\n"
-    # msg_segments += 'Powered by FreeStudio, 全部微博存档（非实时更新）: https://fun.zhufree.fun/5732/weibo/'
+    msg_segments += 'Powered by FreeStudio, 数据非实时更新，全部微博存档: https://fun.zhufree.fun/5732/weibo/'
     return (ellipse, msg_segments)
