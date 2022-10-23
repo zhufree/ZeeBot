@@ -4,7 +4,7 @@ from nonebot.matcher import Matcher
 from nonebot.adapters.onebot.v11 import Message, MessageSegment
 import json
 
-query_matcher = on_command('MBCC查询', aliases={'厕所查询', '微博查询', 'MBCC检索'}, priority=5)
+query_matcher = on_command('MBCC查询', aliases={'厕所查询', '微博查询', 'mbcc查询', 'MBCC检索'}, priority=5)
 
 @query_matcher.handle()
 async def handle_query(matcher: Matcher, args: Message = CommandArg()):
@@ -46,20 +46,22 @@ async def send_weibo(weibo_list):
     else:
         ellipse = False
         msg_segments = MessageSegment.text("检索结果：\n")
-    for index, weibo in enumerate(weibo_list[:10]):
-        if ellipse and len(weibo['content']) > 300:
-            msg_segments += MessageSegment.text(f"{index}: {weibo['content'][:300]}\n")
+    for weibo in weibo_list[:10]:
+        if ellipse and len(weibo['content']) > 100:
+            msg_segments += MessageSegment.text(f"{weibo['content'][:100]}...\n")
         else:
             msg_segments += MessageSegment.text(f"{weibo['content']}\n")
         if 'pics' in weibo.keys():
             for pic in weibo['pics']:
                 if ellipse:
-                    msg_segments += f'[{pic}]\n'
+                    msg_segments += f'[ {pic} ]\n'
                 else:
                     pic_segment = MessageSegment(type='image', data={
-                                    'file': pic}
-                                )
+                        'file': pic}
+                    )
                     msg_segments += pic_segment
+        if 'video' in weibo.keys():
+            msg_segments += f'视频[ {weibo["video"]} ]\n'
         msg_segments += f"at {weibo['time']}\n"
     msg_segments += 'Powered by FreeStudio, 数据非实时更新，全部微博存档: https://fun.zhufree.fun/5732/weibo/'
     return (ellipse, msg_segments)
