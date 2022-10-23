@@ -1,4 +1,3 @@
-from curses.ascii import isdigit
 from nonebot import on_command
 from nonebot.params import Arg, CommandArg, ArgPlainText
 from nonebot.matcher import Matcher
