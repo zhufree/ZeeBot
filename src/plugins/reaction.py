@@ -17,7 +17,7 @@ jailer_keywords = {
     'hekadi': ['赫卡蒂'],
     'lanli': ['兰利'],
     'heluo': ['赫罗'],
-    'yilinna': ['伊琳娜'],
+    'yilinna': ['伊琳娜', '10娜'],
     'hameier': ['哈梅尔', '水母'],
     'amypan': ['艾米潘', 'emp'],
     'fuluola': ['芙洛拉'],
@@ -25,7 +25,7 @@ jailer_keywords = {
     'leibinisi': ['雷比尼斯'],
     'demoli': ['德莫莉'],
     'weiduoliya': ['维多利亚'],
-    'kexi': ['科希'],
+    'kexi': ['科希', '科c'],
     'kaierwen': ['开尔文'],
     'yigeni': ['伊格尼'],
     'luliaika': ['露莉艾卡'],
@@ -48,7 +48,12 @@ jailer_keywords = {
     'nox': ['诺克斯', 'nox'],
     'pajiaxi': ['帕加茜'],
     'wendy': ['温蒂'],
-    'xiayin': ['夏音']
+    'xiayin': ['夏音'],
+    'mess': ['莓丝'],
+    'snake': ['娜恰', '小蛇'],
+    'mcqueen': ['麦昆'],
+    'enfer': ['恩菲尔'],
+    'oakkk': ['oak']
 }
 async def jailer_checker(event: Event) -> bool:
     all_keywords = []
