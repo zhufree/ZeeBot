@@ -53,7 +53,7 @@ jailer_keywords = {
     'snake': ['娜恰', '小蛇'],
     'mcqueen': ['麦昆'],
     'enfer': ['恩菲尔'],
-    'oakkk': ['oak']
+    'oak': ['oakkk']
 }
 async def jailer_checker(event: Event) -> bool:
     all_keywords = []
