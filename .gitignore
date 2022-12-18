@@ -5,6 +5,7 @@ config.py
 #project
 audios/
 data/
+config/
 Pipfile.lock
 
 ### Python ###

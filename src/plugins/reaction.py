@@ -53,7 +53,7 @@ jailer_keywords = {
     'snake': ['娜恰', '小蛇'],
     'mcqueen': ['麦昆'],
     'enfer': ['恩菲尔'],
-    'oak': ['oakkk']
+    'oak': ['oak', '橡木匣']
 }
 async def jailer_checker(event: Event) -> bool:
     all_keywords = []
@@ -127,6 +127,7 @@ async def help_handler(bot: Bot, event: Event):
     1.微博等平台的动态订阅（艾特我并发送“添加订阅”开始使用）
     2.点歌+歌名进行点歌
     3.发送关键词触发随机语音回复
+    4.自定义群内自动回复
 其他功能及详细说明请查看使用文档：
 https://gj5i5wsqre.feishu.cn/docx/doxcnZ41X93jOqDb0qxB1afY9vh
 广告位：https://baihehub.com

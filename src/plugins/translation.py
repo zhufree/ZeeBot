@@ -10,7 +10,7 @@ from hashlib import md5
 
 url = 'http://api.fanyi.baidu.com/api/trans/vip/translate'
 
-translate_matcher = on_command("translate", aliases={"翻译"}, priority=5) # rule=to_me(), 
+translate_matcher = on_command("translate", aliases={"翻译", '中翻英'}, priority=5) # rule=to_me(), 
 en_to_cn_matcher = on_command("en2cn", aliases={"英翻中", 'encn', 'entocn'}, priority=5) # rule=to_me(), 
 
 @translate_matcher.handle()
