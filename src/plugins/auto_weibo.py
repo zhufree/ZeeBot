@@ -25,12 +25,13 @@ async def main():
     # grab content
     post_content = f'#{selected_novel["title"]}# by {selected_novel["author"]}\n'
     if select_chap != None:
+        post_content += f'发表于{select_chap["time"]}'
         chapter_content = get_chapter_content(select_chap['url'])
         # in case content is too long
         if len(chapter_content) > 4500:
-            post_content += chapter_content[:4500]
+            post_content += chapter_content[:4500] + '...'
         else:
-            post_content += chapter_content + '...'
+            post_content += chapter_content
     post_content += f'\n阅读原文：{selected_novel["url"]}'
     # post weibo
     if post_content != '':
@@ -50,7 +51,7 @@ def select_novel(data_list, retry):
     if current_chap >= novel_detail['chap_count']:
         retry += 1
         select_novel(data_list, retry)
-    elif novel_detail['vip_chap_id'] != None and current_chap >= novel_detail['vip_chap_id'] - 1:
+    elif novel_detail['vip_chap_id'] != None and current_chap >= novel_detail['vip_chap_id'] - 1 or novel_detail == None:
         data_list.remove(selected_novel)
         retry += 1
         select_novel(data_list, retry)
@@ -91,7 +92,6 @@ def append_data(old_data):
                 'wordcount': wordcount,
                 'publish_time': publish_time,
                 'current_chap': 0
-                # 'chap_count': novel_data['chap_count']
             })
     # with open('data/novel_data.json', 'w', encoding='utf-8') as save:
     #     save.write(json.dumps(new_novel_list, ensure_ascii=False))
@@ -140,6 +140,10 @@ def get_detail_page(url):
     detail_res.encoding = 'gb2312'
     doc = pq(detail_res.text)
     chap_table = doc('#oneboolt')
+    if chap_table == None: # locked
+        return None
+    bid = url.split('=')[-1]
+    httpx.get(f'https://fun.zhufree.fun/book/update/{bid}') # update book to baihehub btw
     chapters = chap_table('tr[itemprop~=chapter]').items()
     chap_list = []
     vip_chap_id = None
