@@ -179,7 +179,7 @@ def get_chapter_content(url):
 
 async def post_weibo(content):
     async with async_playwright() as playwright:
-        browser = await playwright.chromium.launch(headless=False)
+        browser = await playwright.chromium.launch(headless=True)
         context = await browser.new_context(storage_state='weibo_state.json')
         page = await context.new_page()
         await page.goto("https://weibo.com/")

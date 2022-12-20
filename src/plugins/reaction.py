@@ -1,5 +1,5 @@
 from nonebot import on_command, on_keyword, on_regex
-from nonebot.rule import to_me, Rule
+from nonebot.rule import Rule
 from nonebot.typing import T_State
 from nonebot.adapters import Bot, Event
 from nonebot.adapters.onebot.v11 import Message, MessageSegment
@@ -113,7 +113,7 @@ async def handle_audio(bot: Bot, event: Event):
 keywords_dict = {
     '嘤': '嘤嘤嘤'
 }
-reaction = on_keyword(set(keywords_dict.keys()), rule=to_me(), priority=5)
+reaction = on_keyword(set(keywords_dict.keys()), priority=5)
 
 @reaction.handle()
 async def handle_first_receive(bot: Bot, event: Event, state: T_State):
