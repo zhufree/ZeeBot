@@ -2,12 +2,10 @@ from config import *
 import json, httpx, time, random
 from pyquery import PyQuery as pq
 from playwright.async_api import async_playwright
-# from nonebot import require
-# require("nonebot_plugin_apscheduler")
 from nonebot.log import logger
 from nonebot_plugin_apscheduler import scheduler
 
-@scheduler.scheduled_job("cron", hour='7-23', id="post_novel")
+@scheduler.scheduled_job("cron", hour='7-23', minute='0,20,40', id="post_novel")
 async def run_every_hour():
     logger.info('tick')
     await main()
@@ -85,6 +83,7 @@ def append_data(old_data):
             # novel_data = get_detail_page(url)
             if title in old_titles:
                 exist = True
+                break
             new_novel_list.append({
                 'title': title,
                 'author': author,
@@ -143,11 +142,15 @@ def get_detail_page(url):
     chap_table = doc('#oneboolt')
     chapters = chap_table('tr[itemprop~=chapter]').items()
     chap_list = []
+    vip_chap_id = None
     for chap in chapters:
         chap_tds = list(chap('td').items())
         chap_id = chap_tds[0].text().strip()
         chap_title = chap_tds[1].text()
-        if chap_title == '等待进入网审' or chap_title == '[屏蔽中]' or '[VIP]' in chap_title:
+        if chap_title == '等待进入网审' or chap_title == '[屏蔽中]':
+            continue
+        if '[VIP]' in chap_title:
+            vip_chap_id = chap_id
             continue
         chap_desc = chap_tds[2].text()
         chap_time = chap_tds[5]('span:first-child').text()
@@ -161,7 +164,7 @@ def get_detail_page(url):
     return {
         'collection_count': doc('span[itemprop=collectedCount]').text(),
         'chap_count': len(chap_list),
-        'vip_chap_id': None,
+        'vip_chap_id': vip_chap_id,
         'chap_list': chap_list
     }
 
@@ -195,4 +198,5 @@ async def post_weibo(content):
         await context.close()
         await browser.close()
 # scheduler.add_job(ru:n_every_day_from_program_start, "interval", days=1, id="xxx")
-# main()
+import asyncio
+asyncio.run(main())

@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import nonebot
-from nonebot.adapters.onebot.v12 import Adapter
+from nonebot.adapters.onebot.v11 import Adapter
 # Custom your logger
 # 
 # from nonebot.log import logger, default_format
