@@ -7,6 +7,7 @@ audios/
 data/
 config/
 Pipfile.lock
+weibo_state.json
 
 ### Python ###
 # Byte-compiled / optimized / DLL files

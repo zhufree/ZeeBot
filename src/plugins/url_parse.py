@@ -1,10 +1,7 @@
-from nonebot import on_command, on_keyword, on_message, on_regex
-from nonebot.rule import to_me
+from nonebot import on_regex
 from nonebot.typing import T_State
 from nonebot.adapters import Bot, Event
 from nonebot.adapters.onebot.v11 import Message, MessageSegment
-from nonebot.params import EventMessage
-from nonebot import on_message
 from linkson import parse_url
 from config import *
 import json
