@@ -5,7 +5,7 @@ from playwright.async_api import async_playwright
 from nonebot.log import logger
 from nonebot_plugin_apscheduler import scheduler
 
-@scheduler.scheduled_job("cron", hour='7-23', minute='0,20,40', id="post_novel")
+@scheduler.scheduled_job("cron", hour='7-23', minute='0,20,40', jitter=60, id="post_novel")
 async def run_every_hour():
     logger.info('tick')
     await main()
