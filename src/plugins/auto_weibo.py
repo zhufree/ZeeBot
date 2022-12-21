@@ -25,7 +25,7 @@ async def main():
     # grab content
     post_content = f'#{selected_novel["title"]}# by {selected_novel["author"]}\n'
     if select_chap != None:
-        post_content += f'发表于{select_chap["time"]}'
+        post_content += f'发表于{select_chap["time"]}\n'
         chapter_content = get_chapter_content(select_chap['url'])
         # in case content is too long
         if len(chapter_content) > 4500:
@@ -43,12 +43,15 @@ async def main():
     write_file.close()
 
 def select_novel(data_list, retry):
-    if retry > 5:
+    if retry > 10:
         return None
     selected_novel = random.choice(data_list)
+    logger.info(f'retry = {retry}, try{selected_novel["title"]}')
     current_chap = selected_novel['current_chap']
     novel_detail = get_detail_page(selected_novel['url'])
     if current_chap >= novel_detail['chap_count']:
+        if novel_detail['status'] != '连载':
+            data_list.remove(selected_novel)
         retry += 1
         select_novel(data_list, retry)
     elif novel_detail['vip_chap_id'] != None and current_chap >= novel_detail['vip_chap_id'] - 1 or novel_detail == None:
@@ -167,6 +170,7 @@ def get_detail_page(url):
         })
     return {
         'collection_count': doc('span[itemprop=collectedCount]').text(),
+        'status': doc('span[itemprop=updataStatus]').text(),
         'chap_count': len(chap_list),
         'vip_chap_id': vip_chap_id,
         'chap_list': chap_list
@@ -202,5 +206,5 @@ async def post_weibo(content):
         await context.close()
         await browser.close()
 # scheduler.add_job(ru:n_every_day_from_program_start, "interval", days=1, id="xxx")
-import asyncio
-asyncio.run(main())
+# import asyncio
+# asyncio.run(main())
