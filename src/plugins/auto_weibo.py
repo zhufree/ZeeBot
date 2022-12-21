@@ -151,7 +151,10 @@ def get_detail_page(url):
     if chap_table == None: # locked
         return None
     bid = url.split('=')[-1]
-    httpx.get(f'https://fun.zhufree.fun/book/update/{bid}') # update book to baihehub btw
+    try:
+        httpx.get(f'https://fun.zhufree.fun/book/update/{bid}') # update book to baihehub btw
+    finally:
+        pass
     chapters = chap_table('tr[itemprop~=chapter]').items()
     chap_list = []
     vip_chap_id = None
