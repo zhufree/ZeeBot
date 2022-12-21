@@ -44,17 +44,21 @@ async def main():
 
 def select_novel(data_list, retry):
     if retry > 10:
+        logger.info(f'retry = {retry}, return None')
         return None
     selected_novel = random.choice(data_list)
     logger.info(f'retry = {retry}, try{selected_novel["title"]}')
     current_chap = selected_novel['current_chap']
     novel_detail = get_detail_page(selected_novel['url'])
+    logger.info(f'retry = {retry}, 获取章节{novel_detail}')
     if current_chap >= novel_detail['chap_count']:
+        logger.info(f'{selected_novel["title"]}章节数不足')
         if novel_detail['status'] != '连载':
             data_list.remove(selected_novel)
         retry += 1
         select_novel(data_list, retry)
-    elif novel_detail['vip_chap_id'] != None and current_chap >= novel_detail['vip_chap_id'] - 1 or novel_detail == None:
+    elif (novel_detail['vip_chap_id'] != None and current_chap >= novel_detail['vip_chap_id'] - 1) or novel_detail == None:
+        logger.info(f'{selected_novel["title"]}入V或锁文')
         data_list.remove(selected_novel)
         retry += 1
         select_novel(data_list, retry)
