@@ -132,7 +132,6 @@ def init_data():
                 'wordcount': wordcount,
                 'publish_time': publish_time,
                 'current_chap': 0
-                # 'chap_count': novel_data['chap_count']
             })
             # 2022-12-20 08:58:15
             time_stamp = time.mktime(time.strptime(publish_time,"%Y-%m-%d %H:%M:%S"))
@@ -163,7 +162,7 @@ def get_detail_page(url):
         if chap_title == '等待进入网审' or chap_title == '[屏蔽中]':
             continue
         if '[VIP]' in chap_title:
-            vip_chap_id = chap_id
+            vip_chap_id = int(chap_id)
             continue
         chap_desc = chap_tds[2].text()
         chap_time = chap_tds[5]('span:first-child').text()
