@@ -23,7 +23,9 @@ async def main():
     # decide which novel which chapter
     selected_novel, select_chap = select_novel(data_list, 0)
     # grab content
-    post_content = f'#{selected_novel["title"]}# by {selected_novel["author"]}\n'
+    post_content = ''
+    if selected_novel != None:
+        post_content = f'#{selected_novel["title"]}# by {selected_novel["author"]}\n'
     if select_chap != None:
         post_content += f'发表于{select_chap["time"]}\n'
         chapter_content = get_chapter_content(select_chap['url'])
@@ -32,7 +34,7 @@ async def main():
             post_content += chapter_content[:4500] + '...'
         else:
             post_content += chapter_content
-    post_content += f'\n阅读原文：{selected_novel["url"]}'
+        post_content += f'\n阅读原文：{selected_novel["url"]}'
     # post weibo
     if post_content != '':
         await post_weibo(post_content)
@@ -45,7 +47,7 @@ async def main():
 def select_novel(data_list, retry):
     if retry > 10:
         logger.info(f'retry = {retry}, return None')
-        return None
+        return None, None
     selected_novel = random.choice(data_list)
     logger.info(f'retry = {retry}, try{selected_novel["title"]}')
     current_chap = selected_novel['current_chap']
