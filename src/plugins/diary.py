@@ -10,7 +10,6 @@ banned_group = [] # 不发广播的群
 @diary.handle()
 async def _(bot: Bot, event: PrivateMessageEvent) -> None:
     msg = event.get_plaintext().strip()
-    print(msg)
     if len(msg) >= 10:
         if sync(msg):
             await bot.send_private_msg(user_id=event.user_id, message='√')
@@ -19,7 +18,6 @@ async def _(bot: Bot, event: PrivateMessageEvent) -> None:
 
 def sync(msg: str):
     from config import notion_secret, page_id
-    print('sync')
     headers = {
         "Authorization":"Bearer " + notion_secret,
         "accept": "application/json",
@@ -38,7 +36,6 @@ def sync(msg: str):
 	    ]
     }
     res = httpx.patch(url.format(page_id), headers=headers, json=data)
-    print(res.content)
     if res.status_code == 200:
         return True
     else:
