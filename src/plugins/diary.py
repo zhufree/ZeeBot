@@ -1,11 +1,12 @@
 from nonebot import on_message
-from nonebot.adapters.onebot.v11 import Bot, Message, PrivateMessageEvent
-from nonebot.params import CommandArg
+from nonebot.rule import is_type
+from nonebot.adapters.onebot.v11 import Bot, PrivateMessageEvent
 from nonebot.permission import SUPERUSER
 import httpx
 url = "https://api.notion.com/v1/blocks/{}/children"
-diary = on_message(permission=SUPERUSER)
-banned_group = [] # 不发广播的群
+
+diary = on_message(rule=is_type(PrivateMessageEvent), permission=SUPERUSER)
+
 
 @diary.handle()
 async def _(bot: Bot, event: PrivateMessageEvent) -> None:
