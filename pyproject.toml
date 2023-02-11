@@ -12,14 +12,13 @@ nonebot-plugin-apscheduler = "^0.2.0"
 nonebot-plugin-epicfree = "^0.2.0"
 nonebot-plugin-simplemusic = "^0.1.4"
 nonebot-plugin-easyCommand = "^1.1.2"
-nonebot-bison = "^0.6.1"
+nonebot-bison-groupmate-waifu = "^1.2.5"
 nb-cli = "^0.6.7"
 pyquery = "^1.4.3"
 
-
 [tool.nonebot]
 plugins = ["nonebot_plugin_simplemusic", "nonebot_plugin_epicfree", "nonebot_bison", "nonebot_plugin_easyCommand", 
-"nonebot_plugin_wordcloud", "nonebot_plugin_everyday_en"]
+"nonebot_plugin_wordcloud", "nonebot_plugin_everyday_en", 'nonebot_plugin_groupmate_waifu']
 plugin_dirs = ["src/plugins"]
 
 [build-system]
